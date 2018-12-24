@@ -31,7 +31,7 @@
 #define BTN_UP       6375
 #define BTN_DOWN     19125
 
-#define MODES_AMOUNT 22
+#define MODES_AMOUNT 21
 #define RECEIVER_DATA_PIN 3
 
 // two objects to control IR-receiver and data
@@ -44,11 +44,6 @@ int firstDigit = -1;
 int secondDigit = -1;
 int tempValue = -1;
 bool flagNextCode = false;
-
-void setup() {
-  Serial.begin(9600);
-  receiver.enableIRIn(); // run receiver
-}
 
 // find decimal digit matching to code of button
 int decodeRecieverValueToInt(int code){
@@ -154,7 +149,7 @@ int getNum(){
 }
 
 // takes a one- or two-digit number and displays it
-void loop() {
+void readNumberFromIR() {
   Serial.println("Please type number:");
   number = getNum();
   Serial.print("num = ");
