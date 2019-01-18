@@ -36,7 +36,7 @@ void turnOnDot(LedControl& matrix, dot& d) {
 
 void turnOnModule(LedControl& matrix, module* m, bool dirFlag) {
   if (dirFlag) {
-    for (int j = 0; j < (m->dotCount); j++) {     // counter of dots in module
+    for (int j = 0; j < (m->dotCount); j++) {         // counter of dots in module
       delay(m->dotDelay);
       turnOnDot(matrix, dotIndex[(m->dotArray[j])]);
     }
@@ -50,6 +50,7 @@ void turnOnModule(LedControl& matrix, module* m, bool dirFlag) {
 
 // (dir = in) if (flag == true)
 void turnOnPath(LedControl& matrix, int num, bool dirFlag) {
+  num--;                                                                     // get num == [1;21]. need num == [0;20]
   turnOnModule(matrix, mode_arr[num], dirFlag);
   for (int i = 0; i < (pathArray[num][!dirFlag])->count; i++)                // counter of modules in path
       turnOnModule(matrix, ((pathArray[num][!dirFlag])->moduleArray)[i], dirFlag);
